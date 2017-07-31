@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile Page</title>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <!-- Custom CSS sheet, used for the navbar header, footer, and filter dropdown menu -->
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+  <!-- Optional theme from Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+  <!-- Stylesheet for font awesome icons (used for loading spinner animation) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script src="http://requirejs.org/docs/release/2.2.0/minified/require.js"></script>
+  <!-- AngularJS framework -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+  <!-- Javascript functions -->
+  <script type="text/javascript" src="functions.js"></script>
+  <script type="text/javascript" src="//platform.linkedin.com/in.js">
+    api_key:   78cganekthclde
+    onLoad:    onLinkedInLoad
+    authorize: true
+    lang:      en_US
+</script>
+</head>
+
+<body>
+<div ng-app="profileApp">
+  <div ng-controller="profileCtrl">
+
+    <br>
+    <div class="container text-center">
+      <script type="in/Login"></script>
+    </div>
+
+    <div class="container">
+      <button ng-click='displayProfile()'>Get info</button>
+      <h3>Profile Overview</h3>
+      <img ng-src='{{profile_pic}}' alt='picture'></img>
+      <p>Name: {{name}}</p>
+      <p>Headline: {{headline}}</p>
+      <button ng-click='logout()'>Logout</button>
+    </div>
+
+  </div>
+</div>
+
+</body>
