@@ -23,17 +23,48 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
   <!-- Javascript functions -->
   <script type="text/javascript" src="functions.js"></script>
+  <!-- LinkedIn SDK -->
   <script type="text/javascript" src="//platform.linkedin.com/in.js">
     api_key:   78cganekthclde
     onLoad:    onLinkedInLoad
     authorize: true
     lang:      en_US
-</script>
+  </script>
+
+  <!-- Skype Web SDK -->
+  <script src="https://swx.cdn.skype.com/shared/v/1.2.15/SkypeBootstrap.min.js"></script>
+  <script>
+  // Reference to SkypeBootstrap.min.js
+  // Implements the Skype object model via https://swx.cdn.skype.com/shared/v/1.2.15/SkypeBootstrap.min.js
+
+  // Call the application object
+  var config = {
+   apiKey: 'a42fcebd-5b43-4b89-a065-74450fb91255', // SDK
+   apiKeyCC: '9c967f6b-a846-4df2-b43d-5167e47d81e1' // SDK+UI
+  };
+  var Application
+
+  Skype.initialize({ apiKey: config.apiKey }, function (api) {
+          window.skypeWebApp = new api.application();
+          //Make sign in table appear
+          $(".menu #sign-in").click();
+          // whenever client.state changes, display its value
+          window.skypeWebApp.signInManager.state.changed(function (state) {
+              $('#client_state').text(state);
+          });
+      }, function (err) {
+          console.log(err);
+          alert('Cannot load the SDK.');
+      });
+
+  // Sign-in code typically follows here.
+  </script>
 </head>
 
 <body>
+
 <div ng-app="profileApp">
-  <div ng-controller="profileCtrl">
+  <div id="profileCtrl" ng-controller="profileCtrl">
 
     <br>
     <div class="container text-center">
@@ -41,11 +72,16 @@
     </div>
 
     <div class="container">
-      <button ng-click='displayProfile()'>Get info</button>
       <h3>Profile Overview</h3>
-      <img ng-src='{{profile_pic}}' alt='picture'></img>
-      <p>Name: {{name}}</p>
-      <p>Headline: {{headline}}</p>
+      <img ng-src='{{profile_pic}}' height="80" width="80"></img>
+      <p><strong>Name:</strong> {{name}}</p>
+      <p><strong>Headline:</strong> {{headline}}</p>
+      <p><strong>Summary:</strong> {{summary}}</p>
+      <p><strong>Number of Connections:</strong> {{numConnections}}</p>
+      <p><strong>Email:</strong> {{email}}</p>
+    </div>
+
+    <div class="container text-center">
       <button ng-click='logout()'>Logout</button>
     </div>
 
